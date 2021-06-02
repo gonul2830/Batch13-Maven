@@ -6,34 +6,41 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 public class C3_BeforeClassAfterClass {
 
-    static WebDriver driver;
-    @BeforeClass  // classdan once calisir (statik olmasi gerekir)
+   static WebDriver driver;
+    @BeforeClass
     public static void setup(){
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver =new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        System.out.println("setup calisti");
+        System.out.println("Setup methodu calıstı");
+
     }
-    @AfterClass // classdan sonra calisir (statik olmasi gerekir)
-    public static void tearDown() throws InterruptedException {
+    @AfterClass
+    public static void tearDown () throws InterruptedException {
         Thread.sleep(5000);
         driver.close();
-        System.out.println("teardown calisti");
+        System.out.println("tearDown methodu calıstı");
+    }
+
+    @Test
+    public  void test01() throws InterruptedException {
+
+        driver.get("https://google.com");
+        System.out.println("Test01 methodu calıstı");
+
     }
     @Test
-    public void test01()  {
-        driver.get("https://techproeducation.com");
-        System.out.println("1.method calisti");
+    public void test02() throws InterruptedException {
+
+        driver.get("https://www.amazon.com");
+        System.out.println("Test02 methodu calıstı");
     }
     @Test
-    public void test02() {
-        driver.get("https://amazon.com");
-        System.out.println("2.method calisti");
-    }
-    @Test
-    public void test03() {
-        driver.get("https://facebook.com");
-        System.out.println("3.method calisti");
+    public void test03() throws InterruptedException {
+
+        driver.get("https://www.facebook.com");
+        System.out.println("Test03 methodu calıstı");
+
     }
 }
