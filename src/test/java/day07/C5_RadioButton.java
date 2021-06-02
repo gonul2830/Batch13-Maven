@@ -31,7 +31,7 @@ Secili degilse cinsiyet butonundan size uygun olani secin
     }
     @After
     public void tearDown(){
-        //driver.close();
+        driver.close();
     }
     @Test
     public void test01(){
@@ -44,7 +44,6 @@ Secili degilse cinsiyet butonundan size uygun olani secin
         // “radio buttons” elementlerini locate edin
         // Secili degilse cinsiyet butonundan size uygun olani secin
         WebElement radioKadin= driver.findElement(By.xpath("(//label[@class='_58mt'])[1]"));
-         //WebElement radioKadin= driver.findElement(By.xpath("(//input[@type='radio'])[2]"));
          if (!radioKadin.isSelected()){
             radioKadin.click();
         }
