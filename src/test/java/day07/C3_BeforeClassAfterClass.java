@@ -30,7 +30,7 @@ public class C3_BeforeClassAfterClass {
         System.out.println("Test01 methodu calıstı");
 
     }
-    @Test
+    @Test @Ignore
     public void test02() throws InterruptedException {
 
         driver.get("https://www.amazon.com");
