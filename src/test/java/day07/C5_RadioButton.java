@@ -1,8 +1,8 @@
 package day07;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,28 +20,33 @@ https://www.facebook.com adresine gidin
 Secili degilse cinsiyet butonundan size uygun olani secin
 
      */
-    static WebDriver driver;
-    @BeforeClass
-    public static void setup(){
+
+    WebDriver driver;
+    @Before
+    public void setup(){
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
-    @AfterClass
-    public static void tearDown() throws InterruptedException {
-        Thread.sleep(1000);
-        driver.close();
+    @After
+    public void tearDown(){
+        //driver.close();
     }
     @Test
-    public void test01() throws InterruptedException {
-        driver.get("https://tr-tr.facebook.com/");
-        driver.findElement(By.xpath("//a[@data-testid='open-registration-form-button']")).click();
-        WebElement kadin = driver.findElement(By.xpath("//input[@value='1']"));
-        WebElement erkek = driver.findElement(By.xpath("//input[@value='2']"));
-        WebElement ozel = driver.findElement(By.xpath("//input[@value='-1']"));
-        if (!erkek.isSelected()) {
-            erkek.click();
+    public void test01(){
+        driver.get("https://www.facebook.com");
+        WebElement guvenik = driver.findElement(By.xpath("(//button[@value='1'])[3]"));
+        guvenik.click();
+        //“Create an Account” button’una basin
+     WebElement yeniKayit=driver.findElement(By.xpath("(//a[@role='button'])[2]"));
+      yeniKayit.click();
+        // “radio buttons” elementlerini locate edin
+        // Secili degilse cinsiyet butonundan size uygun olani secin
+        WebElement radioKadin= driver.findElement(By.xpath("(//label[@class='_58mt'])[1]"));
+         //WebElement radioKadin= driver.findElement(By.xpath("(//input[@type='radio'])[2]"));
+         if (!radioKadin.isSelected()){
+            radioKadin.click();
         }
     }
 }
