@@ -44,8 +44,12 @@ public class C6_BestBuyAssertion {
         String accutalTitle = driver.getTitle();
         String unExpectedWord= "Rest";
         Assert.assertFalse(accutalTitle.contains("Rest"));
+        String istenenkelime= "Best";
+        Assert.assertTrue(accutalTitle.contains(istenenkelime));
         WebElement frnc = driver.findElement(By.xpath("//button[@lang='fr']"));
         Assert.assertTrue(frnc.isDisplayed());
 
     }
+
+
 }
